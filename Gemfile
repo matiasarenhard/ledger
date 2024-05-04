@@ -53,8 +53,11 @@ gem "devise-bootstrap5"
 gem 'faker'
 
 gem "chartkick"
-# This is a simple and free alternative to the New Relic APM, Datadog or other similar services. https://github.com/igorkasyanchuk/rails_performance
+# This is a simple and free alternative to the New Relic APM, Datadog or other similar services. [https://github.com/igorkasyanchuk/rails_performance]
 gem 'rails_performance'
+
+# will_paginate is a pagination library that integrates with Ruby on Rails [https://github.com/mislav/will_paginate]
+gem 'will_paginate', '~> 4.0'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
