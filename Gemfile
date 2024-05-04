@@ -53,6 +53,8 @@ gem "devise-bootstrap5"
 gem 'faker'
 
 gem "chartkick"
+# This is a simple and free alternative to the New Relic APM, Datadog or other similar services. https://github.com/igorkasyanchuk/rails_performance
+gem 'rails_performance'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
