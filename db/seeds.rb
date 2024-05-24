@@ -5,7 +5,7 @@ Person.destroy_all
 
 User.create email: 'admin@admin.com', password: '111111'
 
-puts "Usuário criado:"
+puts "User created:"
 puts "login admin@admin.com"
 puts "111111"
 
