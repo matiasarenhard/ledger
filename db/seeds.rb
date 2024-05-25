@@ -60,7 +60,8 @@ def create_persons(number_of_persons)
         phone_number: Faker::PhoneNumber.phone_number,
         national_id: CPF.generate,
         active: [true, false].sample,
-        user: User.order('random()').first
+        user: User.order('random()').first,
+        balance: Faker::Number.between(from: 1, to: 200)
       )
 
       create_debts(person.id)
