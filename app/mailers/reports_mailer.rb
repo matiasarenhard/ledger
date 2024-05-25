@@ -1,5 +1,3 @@
-require 'csv'
-
 class ReportsMailer < ActionMailer::Base
   default from: 'notifications@example.com'
 
@@ -9,6 +7,6 @@ class ReportsMailer < ActionMailer::Base
       content: GenerateCsvReportService.new.call
     }
 
-    mail(to: email, subject: 'Ledger reports lits', body: 'Fallback template content')
+    mail(to: email, subject: 'CSV com informações do usuário', body: 'Em anexo segue o csv com as informações dos usuários.')
   end
 end
