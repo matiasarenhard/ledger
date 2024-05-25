@@ -23,15 +23,21 @@ class DashboardService
   private
 
   def debts
-    Debt.where(person_id: active_people_ids).sum(:amount)
+    Rails.cache.fetch('debts', expires_in: 10.minutes) do
+      Debt.where(person_id: active_people_ids).sum(:amount)
+    end  
   end
 
   def payments
-    Payment.where(person_id: active_people_ids).sum(:amount)
+    Rails.cache.fetch('payments', expires_in: 10.minutes) do
+      Payment.where(person_id: active_people_ids).sum(:amount)
+    end
   end
 
   def balance
-    payments - debts
+    Rails.cache.fetch('balance', expires_in: 10.minutes) do
+      payments - debts
+    end
   end
 
   def my_people
@@ -39,33 +45,45 @@ class DashboardService
   end  
 
   def last_payments
-    last_payments = Payment.order(created_at: :desc).limit(10).map do |payment|
-      [payment.id, payment.amount]
-    end
+    Rails.cache.fetch('last_debts', expires_in: 10.minutes) do
+      last_payments = Payment.order(created_at: :desc).limit(10).map do |payment|
+        [payment.id, payment.amount]
+      end
+    end 
   end  
 
   def last_debts
-    last_debts = Debt.order(created_at: :desc).limit(10).map do |debt|
-      [debt.id, debt.amount]
+    Rails.cache.fetch('last_debts', expires_in: 10.minutes) do
+      last_debts = Debt.order(created_at: :desc).limit(10).map do |debt|
+        [debt.id, debt.amount]
+      end
     end
   end
 
   def bottom_person
-    Person.order(:balance).first
+    Rails.cache.fetch('bottom_person', expires_in: 10.minutes) do
+      Person.order(:balance).first
+    end
   end  
 
   def top_person
-    Person.order(:balance).last
+    Rails.cache.fetch('top_person', expires_in: 10.minutes) do
+      Person.order(:balance).last
+    end
   end
 
   def active_people_ids
-    Person.where(active: true).select(:id)
+    Rails.cache.fetch('active_people_ids', expires_in: 10.minutes) do
+      Person.where(active: true).select(:id)
+    end
   end  
 
   def active_people_pie_chart
-    {
-      active: Person.where(active: true).count,
-      inactive: Person.where(active: false).count
-    }
+    Rails.cache.fetch('active_people_pie_chart', expires_in: 10.minutes) do
+      {
+        active: Person.where(active: true).count,
+        inactive: Person.where(active: false).count
+      }
+    end
   end  
 end
