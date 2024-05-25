@@ -31,3 +31,15 @@ bin/rails db:create db:migrate RAILS_ENV=test
 
 bundle exec rspec
 ```
+
+# Enable cache
+```sh
+ bin/rails dev:cache
+```
+
+# Start Redis
+```sh
+   sudo service redis-server start
+```
+
+
