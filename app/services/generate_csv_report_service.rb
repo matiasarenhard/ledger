@@ -1,7 +1,5 @@
 require 'csv'
-
 class GenerateCsvReportService
-
   def call
     CSV.generate do |csv|
       csv << ['Name', 'Email', 'Balance']
