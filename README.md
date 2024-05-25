@@ -34,12 +34,12 @@ bundle exec rspec
 
 ## Enable cache
 ```sh
- bin/rails dev:cache
+bin/rails dev:cache
 ```
 
 ## Start Redis
 ```sh
-   sudo service redis-server start
+sudo service redis-server start
 ```
 
 
